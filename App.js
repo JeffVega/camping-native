@@ -1,12 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View,TextInput,Image,ScrollView,ImageBackground} from 'react-native';
 import {Button,Input} from 'react-native-elements';
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import {CheckBox} from 'react-native-elements'
 import Header from './components/header'
 export default class App extends React.Component {
   state = {
     text:"",
-    camper:[]
+    camper:[],
   }
   addCamper = () => {
    let newText = this.state.text;
@@ -20,12 +20,27 @@ export default class App extends React.Component {
     arr.splice(pos,1);
     this.setState({camper:arr})
   }
+  checkedList =() =>{
+    this.setState({
+      checked: true
+    })
+  }
   renderTodos = () =>{
     return this.state.camper.map(camper => {
       return (
+        <View>
+<CheckBox
+  key={camper}  
+  containerStyle={styles.checkbox}
+  checkedIcon='dot-circle-o'
+  uncheckedIcon='circle-o'
+  onPress={() => this.setState({checked: !this.state.checked})}
+  checked={this.state.checked}
+/>
         <Text style={styles.list}
-        onPress={() =>{this.deleteCamper(camper)}}
+        onLongPress={() =>{this.deleteCamper(camper)}}
         key={camper + "text"}>{camper}</Text>
+        </View>
       )
     })
   }
@@ -37,12 +52,12 @@ export default class App extends React.Component {
           <Image style={styles.headerimg} source={require('./imgs/fireplace.gif')} />
         <View style={styles.container}>
                     
-                    <Text style={styles.header}>Camper Application</Text>
+                    <Text style={styles.header}>Camping Remind</Text>
                         <TextInput 
                         style={styles.input}
                         onChangeText={(text)=>this.setState({text})}
                         value={this.state.text}/>
-                    <Button style={styles.button} color={"white"} onPress={this.addCamper} title='BUTTON'/>
+                    <Button buttonStyle={styles.button} color={"white"} onPress={this.addCamper} title='BUTTON'/>
                     <ScrollView contentContainerStyle={styles.contentContainer}>
   
                                 {this.renderTodos()}
@@ -57,7 +72,7 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   backgroundImage:{
     flex: 1,
-    resizeMode: 'cover'
+   
   },
     headerimg:{
       marginTop:30,
@@ -80,6 +95,7 @@ const styles = StyleSheet.create({
         borderColor: "grey",
         borderWidth: 2,
         marginBottom: 10,
+        opacity: 0.7
     },
     header:{
       fontSize:30,
@@ -92,9 +108,15 @@ const styles = StyleSheet.create({
     list:{
       color:'white',
       fontWeight:'bold',
-      fontSize:45
+      fontSize:25
+    },
+    checkbox:{
+      marginLeft:10
     },
     button:{
-      borderColor:"white"
+      backgroundColor:"lightgreen",
+      borderWidth:0,
+      borderRadius: 5,
+
     }
 });
