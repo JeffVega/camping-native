@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View,TextInput,Image,ScrollView} from 'react-native';
+import {StyleSheet, Text, View,TextInput,Image,ScrollView,ImageBackground} from 'react-native';
 import {Button,Input} from 'react-native-elements';
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 import Header from './components/header'
@@ -23,15 +23,18 @@ export default class App extends React.Component {
   renderTodos = () =>{
     return this.state.camper.map(camper => {
       return (
-        <Text 
+        <Text style={styles.list}
         onPress={() =>{this.deleteCamper(camper)}}
-        key={camper}>{camper}</Text>
+        key={camper + "text"}>{camper}</Text>
       )
     })
   }
     render() {
-        return (<View>
-          <Image style={styles.headerimg} source={require('./imgs/campfire.png')} />
+        return ( 
+        <ImageBackground style={styles.backgroundImage} source={require('./imgs/backk.jpg')} >
+       
+          
+          <Image style={styles.headerimg} source={require('./imgs/fireplace.gif')} />
         <View style={styles.container}>
                     
                     <Text style={styles.header}>Camper Application</Text>
@@ -39,18 +42,23 @@ export default class App extends React.Component {
                         style={styles.input}
                         onChangeText={(text)=>this.setState({text})}
                         value={this.state.text}/>
-                    <Button style={styles.bu}color={"blue"} onPress={this.addCamper} title='BUTTON'/>
+                    <Button style={styles.button} color={"white"} onPress={this.addCamper} title='BUTTON'/>
                     <ScrollView contentContainerStyle={styles.contentContainer}>
   
                                 {this.renderTodos()}
                                 </ScrollView>
         </View>
-            </View>
+           
+            </ImageBackground>
         );
     }
 }
 
 const styles = StyleSheet.create({
+  backgroundImage:{
+    flex: 1,
+    resizeMode: 'cover'
+  },
     headerimg:{
       marginTop:30,
       marginLeft: 150,
@@ -61,22 +69,32 @@ const styles = StyleSheet.create({
     },
     container: {
       marginTop: 10,
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
         margin:10
     },
     input: {
         width: 250,
-        borderColor: "green",
+        backgroundColor: '#fff',
+        borderColor: "grey",
         borderWidth: 2,
         marginBottom: 10,
     },
     header:{
       fontSize:30,
-      color:"blue",
+      color:"lightgreen",
       fontWeight:'bold'
-    }, contentContainer: {
+    }, 
+    contentContainer: {
       paddingVertical: 20
+    },
+    list:{
+      color:'white',
+      fontWeight:'bold',
+      fontSize:45
+    },
+    button:{
+      borderColor:"white"
     }
 });
