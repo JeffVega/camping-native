@@ -30,21 +30,11 @@ export default class App extends React.Component {
         this.setState({camper:arr})
     }
 
-    // checkItem = item => {
-    //   item = this.state.camper
-    //   const { checked } = this.state;
-  
-    //   if (!checked.includes(item)) {
-    //     this.setState({ checked: [...checked, item] });
-    //   } else {
-    //     this.setState({ checked: checked.filter(a => a !== item) });
-    //   }
-    // };
+
     renderTodos = () => {
 
         return this.state.camper.map((camper, index) => {
           const  {checked}  = this.state
-          console.log("first",checked)
           checkItem = camper => {
             const  {checked}  = this.state
             console.log("in our loop",{checked})
@@ -54,7 +44,6 @@ export default class App extends React.Component {
               this.setState({ checked: checked.filter(a => a !== camper) });
             }
           };
-          console.log("last",{checked})
                 return (
                     <View key={index}>
                         <CheckBox
