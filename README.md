@@ -11,7 +11,7 @@ when going to a camping trips
 ![Checked Item](https://user-images.githubusercontent.com/34497456/42482780-6551cae0-839e-11e8-98ed-2693c330998c.PNG)
 
 ## Tech Used
-*Javascript
-*React
-*React Native
-*Expo
+* Javascript
+* React
+* React Native
+* Expo
