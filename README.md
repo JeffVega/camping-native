@@ -1,6 +1,6 @@
 ### Camping-Native
 ## Summary 
-Capming Native is React Native application to remind users what to bring,
+Camping Native is React Native application to remind users what to bring,
 when going to a camping trips
 ![Camping Native](https://user-images.githubusercontent.com/34497456/42482674-c51705c2-839d-11e8-8e7d-78fde01c38b4.PNG)
 
